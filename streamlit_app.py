@@ -46,18 +46,18 @@ st.set_page_config(
 # Inject custom CSS for color palette
 st.markdown("""
 <style>
-    /* Color Palette: Deep red to black gradient */
+    /* Color Palette: Vibrant red gradient - more red, less brown */
     :root {
-        --primary-color: #890002;
-        --primary-dark: #7a0002;
-        --primary-darker: #6a0001;
-        --accent-1: #5b0001;
-        --accent-2: #4c0001;
-        --accent-3: #3d0001;
-        --accent-4: #2e0001;
-        --accent-5: #1e0000;
-        --accent-6: #0f0000;
-        --black: #000000;
+        --primary-color: #C41E3A;
+        --primary-dark: #B91C2C;
+        --primary-darker: #A01A1F;
+        --accent-1: #8B1A1A;
+        --accent-2: #7A1515;
+        --accent-3: #6B1111;
+        --accent-4: #5C0D0D;
+        --accent-5: #4D0808;
+        --accent-6: #3E0404;
+        --black: #2A0000;
     }
     
     /* Main background */
@@ -67,128 +67,160 @@ st.markdown("""
     
     /* Sidebar */
     [data-testid="stSidebar"] {
-        background-color: #1e0000;
+        background: linear-gradient(180deg, #2A0000 0%, #1A0000 100%);
         color: #ffffff;
     }
     
     [data-testid="stSidebar"] .css-1d391kg {
-        background-color: #2e0001;
+        background-color: #3E0404;
     }
     
     /* Primary buttons */
     .stButton > button {
-        background-color: #890002;
+        background: linear-gradient(135deg, #C41E3A 0%, #B91C2C 100%);
         color: white;
         border: none;
-        border-radius: 4px;
-        font-weight: 500;
+        border-radius: 6px;
+        font-weight: 600;
+        box-shadow: 0 2px 4px rgba(196, 30, 58, 0.3);
+        transition: all 0.3s ease;
     }
     
     .stButton > button:hover {
-        background-color: #7a0002;
-        border-color: #890002;
+        background: linear-gradient(135deg, #B91C2C 0%, #A01A1F 100%);
+        box-shadow: 0 4px 8px rgba(196, 30, 58, 0.4);
+        transform: translateY(-1px);
     }
     
     .stButton > button:focus {
-        background-color: #6a0001;
-        box-shadow: 0 0 0 0.2rem rgba(137, 0, 2, 0.25);
+        background: linear-gradient(135deg, #A01A1F 0%, #8B1A1A 100%);
+        box-shadow: 0 0 0 0.3rem rgba(196, 30, 58, 0.3);
     }
     
     /* Secondary buttons */
     .stDownloadButton > button {
-        background-color: #7a0002;
+        background: linear-gradient(135deg, #B91C2C 0%, #A01A1F 100%);
         color: white;
+        border-radius: 6px;
+        font-weight: 500;
     }
     
     .stDownloadButton > button:hover {
-        background-color: #6a0001;
+        background: linear-gradient(135deg, #A01A1F 0%, #8B1A1A 100%);
     }
     
     /* Headers */
     h1, h2, h3 {
-        color: #890002;
+        color: #C41E3A;
+        font-weight: 700;
     }
     
     /* Links */
     a {
-        color: #890002;
+        color: #C41E3A;
+        text-decoration: none;
     }
     
     a:hover {
-        color: #7a0002;
+        color: #B91C2C;
+        text-decoration: underline;
     }
     
     /* Metrics */
     [data-testid="stMetricValue"] {
-        color: #890002;
+        color: #C41E3A;
+        font-weight: 600;
     }
     
     /* Success boxes */
     .stSuccess {
-        background-color: #1e0000;
-        border-left: 4px solid #890002;
+        background: linear-gradient(90deg, #2A0000 0%, #3E0404 100%);
+        border-left: 4px solid #C41E3A;
         color: #ffffff;
+        border-radius: 4px;
     }
     
     /* Info boxes */
     .stInfo {
-        background-color: #2e0001;
-        border-left: 4px solid #890002;
+        background: linear-gradient(90deg, #3E0404 0%, #4D0808 100%);
+        border-left: 4px solid #C41E3A;
         color: #ffffff;
+        border-radius: 4px;
     }
     
     /* Warning boxes */
     .stWarning {
-        background-color: #3d0001;
-        border-left: 4px solid #890002;
+        background: linear-gradient(90deg, #4D0808 0%, #5C0D0D 100%);
+        border-left: 4px solid #C41E3A;
         color: #ffffff;
+        border-radius: 4px;
     }
     
     /* Error boxes */
     .stError {
-        background-color: #4c0001;
-        border-left: 4px solid #890002;
+        background: linear-gradient(90deg, #5C0D0D 0%, #6B1111 100%);
+        border-left: 4px solid #C41E3A;
         color: #ffffff;
+        border-radius: 4px;
     }
     
     /* Radio buttons */
     .stRadio > label {
-        color: #890002;
+        color: #C41E3A;
+        font-weight: 500;
     }
     
     /* Selectbox */
     .stSelectbox > label {
-        color: #890002;
+        color: #C41E3A;
+        font-weight: 500;
     }
     
     /* Text input labels */
     .stTextInput > label {
-        color: #890002;
+        color: #C41E3A;
+        font-weight: 500;
     }
     
     /* Slider */
     .stSlider > label {
-        color: #890002;
+        color: #C41E3A;
+        font-weight: 500;
+    }
+    
+    /* File uploader */
+    .stFileUploader > label {
+        color: #C41E3A;
+        font-weight: 500;
     }
     
     /* Expander */
     .streamlit-expanderHeader {
-        background-color: #1e0000;
+        background: linear-gradient(90deg, #2A0000 0%, #3E0404 100%);
         color: #ffffff;
+        border-radius: 4px;
+        font-weight: 500;
     }
     
     .streamlit-expanderHeader:hover {
-        background-color: #2e0001;
+        background: linear-gradient(90deg, #3E0404 0%, #4D0808 100%);
     }
     
     /* Dataframes */
     .stDataFrame {
-        border: 1px solid #890002;
+        border: 2px solid #C41E3A;
+        border-radius: 4px;
     }
     
     /* Dividers */
     hr {
-        border-color: #890002;
+        border-color: #C41E3A;
+        border-width: 2px;
+    }
+    
+    /* Slider track */
+    .stSlider .stSlider > div > div {
+        background-color: #C41E3A;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -217,6 +249,86 @@ def mol_from_smiles(smiles: str) -> Optional[Chem.Mol]:
         return mol
     except Exception:
         return None
+
+
+def extract_smiles_from_file(file_content: bytes, file_extension: str) -> Optional[str]:
+    """
+    Extract SMILES string from various molecular file formats.
+    
+    Supported formats: SDF, PDB, PDBQT, MOL, MOL2
+    """
+    try:
+        if file_extension.lower() == '.sdf':
+            # SDF file
+            from io import StringIO
+            sdf_data = StringIO(file_content.decode('utf-8'))
+            supplier = Chem.SDMolSupplier(sdf_data)
+            mol = None
+            for m in supplier:
+                if m is not None:
+                    mol = m
+                    break
+            if mol:
+                return Chem.MolToSmiles(mol, canonical=True)
+        
+        elif file_extension.lower() == '.mol':
+            # MOL file
+            mol = Chem.MolFromMolBlock(file_content.decode('utf-8'))
+            if mol:
+                return Chem.MolToSmiles(mol, canonical=True)
+        
+        elif file_extension.lower() == '.pdb':
+            # PDB file - try to read with RDKit
+            mol = Chem.MolFromPDBBlock(file_content.decode('utf-8'))
+            if mol:
+                return Chem.MolToSmiles(mol, canonical=True)
+            # If RDKit fails, try to extract SMILES from REMARK lines if present
+            lines = file_content.decode('utf-8').split('\n')
+            for line in lines:
+                if 'SMILES' in line.upper() or 'REMARK' in line:
+                    # Try to find SMILES in REMARK
+                    parts = line.split()
+                    for i, part in enumerate(parts):
+                        if 'SMILES' in part.upper() and i + 1 < len(parts):
+                            potential_smiles = parts[i + 1]
+                            mol = Chem.MolFromSmiles(potential_smiles)
+                            if mol:
+                                return Chem.MolToSmiles(mol, canonical=True)
+        
+        elif file_extension.lower() == '.pdbqt':
+            # PDBQT file (AutoDock format) - similar to PDB
+            # Try to read as PDB first
+            mol = Chem.MolFromPDBBlock(file_content.decode('utf-8'))
+            if mol:
+                return Chem.MolToSmiles(mol, canonical=True)
+            # PDBQT may have SMILES in comments
+            lines = file_content.decode('utf-8').split('\n')
+            for line in lines:
+                if 'SMILES' in line.upper():
+                    parts = line.split()
+                    for i, part in enumerate(parts):
+                        if 'SMILES' in part.upper() and i + 1 < len(parts):
+                            potential_smiles = parts[i + 1]
+                            mol = Chem.MolFromSmiles(potential_smiles)
+                            if mol:
+                                return Chem.MolToSmiles(mol, canonical=True)
+        
+        elif file_extension.lower() == '.mol2':
+            # MOL2 file - RDKit doesn't support directly, try basic parsing
+            # This is a simplified parser - may not work for all MOL2 files
+            content = file_content.decode('utf-8')
+            # Try to find SMILES in comments or use atom/bond info
+            # For now, return None and let user know
+            return None
+        
+        elif file_extension.lower() == '.csv':
+            # CSV file - should have been handled separately
+            return None
+            
+    except Exception as e:
+        return None
+    
+    return None
 
 
 def rdkit_descriptor_names() -> List[str]:
@@ -438,7 +550,7 @@ def load_predictor(artifacts_dir: str = "artifacts"):
 
 def render_home_page():
     """Render the home/dashboard page."""
-    st.title("Blood–Brain Barrier (BBB) Permeability Studio")
+    st.title("Blood-Brain Barrier (BBB) Permeability Studio")
     st.caption(
         "Prototype interface for the sparse-label multi-task ensemble described in the BBB manuscript."
     )
@@ -641,9 +753,11 @@ def render_ligand_prediction_page():
     st.title("BBB Permeability Prediction")
     st.markdown(
         """
-        Upload your ligands as SMILES strings or CSV files to get BBB permeability predictions.
+        Upload a single ligand file to get BBB permeability predictions.
         The model uses RDKit to calculate molecular descriptors from structure and predicts BBB permeability
         using a sparse-label multi-task ensemble model.
+        
+        **Supported file formats:** SDF, MOL, PDB, PDBQT, MOL2
         """
     )
 
@@ -689,45 +803,29 @@ def render_ligand_prediction_page():
 
     st.divider()
 
-    # Input methods
-    input_method = st.radio(
-        "Choose input method:",
-        ["Single SMILES", "Multiple SMILES (one per line)", "CSV file upload"],
-        horizontal=True,
-        key="input_method"
+    # File upload - single ligand only
+    uploaded_file = st.file_uploader(
+        "Upload ligand file:",
+        type=["sdf", "mol", "pdb", "pdbqt", "mol2", "csv"],
+        help="Upload a single ligand file. Supported formats: SDF, MOL, PDB, PDBQT, MOL2, or CSV (with 'smiles' column).",
+        key="ligand_upload"
     )
 
-    smiles_list = []
+    smiles = None
+    file_name = None
 
-    if input_method == "Single SMILES":
-        smiles_input = st.text_input(
-            "Enter SMILES string:",
-            placeholder="e.g., CCO (ethanol) or CC(=O)O (acetic acid)",
-            key="single_smiles"
-        )
-        if smiles_input:
-            smiles_list = [smiles_input.strip()]
+    if uploaded_file is not None:
+        file_name = uploaded_file.name
+        file_extension = os.path.splitext(file_name)[1]
+        
+        try:
+            file_content = uploaded_file.read()
             
-    elif input_method == "Multiple SMILES (one per line)":
-        smiles_text = st.text_area(
-            "Enter SMILES strings (one per line):",
-            placeholder="CCO\nCC(=O)O\nC1=CC=CC=C1",
-            height=150,
-            key="multi_smiles"
-        )
-        if smiles_text:
-            smiles_list = [s.strip() for s in smiles_text.strip().split("\n") if s.strip()]
-
-    elif input_method == "CSV file upload":
-        uploaded_file = st.file_uploader(
-            "Upload CSV file:",
-            type=["csv"],
-            help="CSV file should contain a column named 'smiles' or 'SMILES' with SMILES strings.",
-            key="csv_upload"
-        )
-        if uploaded_file is not None:
-            try:
+            # Extract SMILES based on file type
+            if file_extension.lower() == '.csv':
+                # CSV file - extract SMILES from column
                 df_upload = pd.read_csv(uploaded_file)
+                uploaded_file.seek(0)  # Reset file pointer
                 
                 # Find SMILES column (case-insensitive)
                 smiles_col = None
@@ -740,78 +838,76 @@ def render_ligand_prediction_page():
                     st.error(f"No 'smiles' column found in CSV. Available columns: {', '.join(df_upload.columns)}")
                 else:
                     smiles_list = df_upload[smiles_col].astype(str).tolist()
-                    st.success(f"Loaded {len(smiles_list)} SMILES from CSV file")
+                    if len(smiles_list) > 1:
+                        st.warning(f"CSV contains {len(smiles_list)} ligands. Only the first ligand will be processed.")
+                    if len(smiles_list) > 0:
+                        smiles = smiles_list[0]
+            else:
+                # Molecular structure file
+                with st.spinner(f"Extracting SMILES from {file_extension.upper()} file..."):
+                    extracted_smiles = extract_smiles_from_file(file_content, file_extension)
                     
-                    # Show preview
-                    with st.expander("Preview uploaded data"):
-                        st.dataframe(df_upload.head(10), use_container_width=True)
-                        
-            except Exception as e:
-                st.error(f"Error reading CSV file: {e}")
+                    if extracted_smiles:
+                        smiles = extracted_smiles
+                        st.success(f"Successfully extracted SMILES from {file_name}")
+                    else:
+                        st.error(f"Could not extract SMILES from {file_extension.upper()} file. The file may be corrupted or in an unsupported format.")
+                        st.info("**Tip:** For PDB/PDBQT files, ensure the file contains valid molecular structure data. For MOL2 files, conversion may not be supported.")
+        
+        except Exception as e:
+            st.error(f"Error reading file: {e}")
+            import traceback
+            with st.expander("Error details"):
+                st.code(traceback.format_exc())
 
     # Process and validate SMILES
-    if smiles_list:
+    if smiles:
         st.divider()
         
         # Canonicalize and validate
         with st.spinner("Validating and canonicalizing SMILES..."):
-            canon_smiles = []
-            invalid_indices = []
-            
-            for idx, smi in enumerate(smiles_list):
-                canon = canonicalize_smiles(smi)
-                if canon is None:
-                    invalid_indices.append(idx)
-                else:
-                    canon_smiles.append((idx, smi, canon))
+            canon_smiles = canonicalize_smiles(smiles)
         
-        # Show validation results
-        if invalid_indices:
-            st.warning(f"{len(invalid_indices)} invalid SMILES string(s) found and will be skipped.")
-            with st.expander("Invalid SMILES", expanded=False):
-                for idx in invalid_indices:
-                    st.text(f"Row {idx + 1}: {smiles_list[idx]}")
-        
-        if canon_smiles:
-            valid_smiles = [canon for _, _, canon in canon_smiles]
+        if canon_smiles is None:
+            st.error("Invalid SMILES string. Please check your file and try again.")
+        else:
+            st.success("Valid SMILES extracted and ready for prediction")
             
-            st.success(f"{len(valid_smiles)} valid SMILES string(s) ready for prediction")
-            
-            # Show molecule previews (only if Draw module is available)
-            if len(valid_smiles) <= 20 and DRAW_AVAILABLE:  # Only show previews for small batches
-                st.subheader("Molecular Structure Preview")
-                cols_per_row = 4
-                rows = (len(valid_smiles) + cols_per_row - 1) // cols_per_row
-                
-                for row_idx in range(rows):
-                    cols = st.columns(cols_per_row)
-                    for col_idx, col in enumerate(cols):
-                        mol_idx = row_idx * cols_per_row + col_idx
-                        if mol_idx < len(valid_smiles):
-                            try:
-                                mol = Chem.MolFromSmiles(valid_smiles[mol_idx])
-                                if mol and Draw is not None:
-                                    img = Draw.MolToImage(mol, size=(300, 300))
-                                    col.image(img, caption=valid_smiles[mol_idx][:50], use_container_width=True)
-                            except Exception as e:
-                                col.error(f"Error rendering: {e}")
+            # Show molecule preview (only if Draw module is available)
+            if DRAW_AVAILABLE:
+                st.subheader("Molecular Structure")
+                try:
+                    mol = Chem.MolFromSmiles(canon_smiles)
+                    if mol and Draw is not None:
+                        img = Draw.MolToImage(mol, size=(400, 400))
+                        st.image(img, caption=f"SMILES: {canon_smiles}", use_container_width=False)
+                except Exception as e:
+                    st.warning(f"Could not render molecular structure: {e}")
             elif not DRAW_AVAILABLE:
-                st.info("Molecular structure visualization is not available on this platform. Descriptor computation and predictions will work normally.")
+                st.info("Molecular structure visualization is not available on this platform.")
+            
+            # Show SMILES
+            st.subheader("Canonical SMILES")
+            st.code(canon_smiles, language=None)
             
             # Compute descriptors
             button_text = "Compute Descriptors & Make Predictions" if predictor else "Compute Descriptors"
             if st.button(button_text, type="primary"):
                 with st.spinner("Computing RDKit descriptors and making predictions..."):
                     try:
-                        # Compute descriptors
-                        desc_df = compute_rdkit_descriptors(valid_smiles)
+                        # Compute descriptors for single molecule
+                        desc_df = compute_rdkit_descriptors([canon_smiles])
                         
                         st.subheader("Descriptor Information")
-                        st.info(f"Computed {len(desc_df.columns)} RDKit descriptors for {len(valid_smiles)} molecule(s)")
+                        st.info(f"Computed {len(desc_df.columns)} RDKit descriptors")
                         
-                        # Show descriptor summary
-                        with st.expander("Descriptor Summary Statistics", expanded=False):
-                            st.dataframe(desc_df.describe(), use_container_width=True)
+                        # Show descriptor values in a simple table (single row)
+                        st.subheader("Descriptor Values")
+                        # Transpose to show descriptors as rows with single value
+                        desc_transposed = desc_df.T
+                        desc_transposed.columns = ['Value']
+                        desc_transposed.index.name = 'Descriptor'
+                        st.dataframe(desc_transposed, use_container_width=True)
                         
                         # Make predictions if model is available
                         if predictor is None:
@@ -830,8 +926,8 @@ def render_ligand_prediction_page():
                                 key="download_descriptors"
                             )
                         else:
-                            # Make predictions
-                            predictions = predictor.predict_proba(valid_smiles)
+                            # Make predictions for single molecule
+                            predictions = predictor.predict_proba([canon_smiles])
                             
                             # Display results
                             st.subheader("BBB Permeability Predictions")
@@ -847,42 +943,37 @@ def render_ligand_prediction_page():
                                 key="threshold"
                             )
                             
-                            # Add binary predictions
-                            predictions["BBB+"] = (predictions["p_bbb_plus"] >= threshold).astype(int)
-                            predictions["BBB-"] = ((predictions["p_bbb_plus"] < threshold).astype(int))
+                            # Get single prediction result
+                            pred_row = predictions.iloc[0]
+                            bbb_prob = pred_row["p_bbb_plus"]
+                            is_bbb_plus = bbb_prob >= threshold
                             
-                            # Rename columns for better display
-                            display_cols = {
-                                "smiles": "SMILES",
-                                "p_bbb_plus": "BBB Permeability Probability",
-                                "p_efflux_mech": "Efflux Mechanism",
-                                "p_influx_mech": "Influx Mechanism",
-                                "p_pampa_mech": "PAMPA Mechanism",
-                                "p_cns_mech": "CNS Mechanism",
-                                "BBB+": "BBB+",
-                                "BBB-": "BBB-"
-                            }
-                            display_df = predictions.rename(columns=display_cols)[list(display_cols.values())]
-                            
-                            # Format probability columns
-                            prob_cols = [c for c in display_df.columns if "Probability" in c or "Mechanism" in c]
-                            for col in prob_cols:
-                                display_df[col] = display_df[col].apply(lambda x: f"{x:.4f}")
-                            
-                            # Display results table
-                            st.dataframe(display_df, use_container_width=True, hide_index=True)
-                            
-                            # Summary statistics
-                            col1, col2, col3, col4 = st.columns(4)
+                            # Display main prediction
+                            col1, col2 = st.columns(2)
                             with col1:
-                                st.metric("Total Molecules", len(predictions))
+                                st.metric(
+                                    "BBB Permeability Probability",
+                                    f"{bbb_prob:.4f}",
+                                    "BBB+" if is_bbb_plus else "BBB-"
+                                )
                             with col2:
-                                bbb_plus_count = (predictions["p_bbb_plus"] >= threshold).sum()
-                                st.metric("BBB+ (Predicted)", bbb_plus_count, f"{(bbb_plus_count/len(predictions)*100):.1f}%")
-                            with col3:
-                                st.metric("Avg BBB Probability", f"{predictions['p_bbb_plus'].mean():.4f}")
-                            with col4:
-                                st.metric("Max BBB Probability", f"{predictions['p_bbb_plus'].max():.4f}")
+                                st.metric(
+                                    "Prediction",
+                                    "BBB+" if is_bbb_plus else "BBB-",
+                                    f"Threshold: {threshold:.2f}"
+                                )
+                            
+                            # Display mechanism probabilities
+                            st.subheader("Mechanism Probabilities")
+                            mech_cols = st.columns(4)
+                            with mech_cols[0]:
+                                st.metric("Efflux", f"{pred_row['p_efflux_mech']:.4f}")
+                            with mech_cols[1]:
+                                st.metric("Influx", f"{pred_row['p_influx_mech']:.4f}")
+                            with mech_cols[2]:
+                                st.metric("PAMPA", f"{pred_row['p_pampa_mech']:.4f}")
+                            with mech_cols[3]:
+                                st.metric("CNS", f"{pred_row['p_cns_mech']:.4f}")
                             
                             # Interpretation guide
                             with st.expander("Interpretation Guide", expanded=False):
@@ -907,7 +998,7 @@ def render_ligand_prediction_page():
                             
                             # Prepare download dataframe
                             download_df = predictions.copy()
-                            download_df["bbb_pred"] = (predictions["p_bbb_plus"] >= threshold).astype(int)
+                            download_df["bbb_pred"] = (bbb_prob >= threshold).astype(int)
                             
                             csv = download_df.to_csv(index=False)
                             st.download_button(
@@ -929,10 +1020,8 @@ def render_ligand_prediction_page():
                         st.error(f"Error during prediction: {str(e)}")
                         with st.expander("Error details", expanded=False):
                             st.code(traceback.format_exc())
-        else:
-            st.warning("No valid SMILES strings to process.")
     else:
-        st.info("Please enter SMILES strings or upload a CSV file to get started.")
+        st.info("Please upload a ligand file to get started.")
 
     # Footer
     st.divider()
