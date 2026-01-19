@@ -18,7 +18,16 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 from rdkit import Chem
-from rdkit.Chem import Descriptors, Draw
+from rdkit.Chem import Descriptors
+
+# Try to import Draw module - may fail on systems without X11 libraries (e.g., Streamlit Cloud)
+try:
+    from rdkit.Chem import Draw
+    DRAW_AVAILABLE = True
+except ImportError:
+    # Draw module not available - visualization will be disabled
+    Draw = None
+    DRAW_AVAILABLE = False
 
 # ============================================================================
 # CONFIGURATION
@@ -605,8 +614,8 @@ def render_ligand_prediction_page():
             
             st.success(f"✓ {len(valid_smiles)} valid SMILES string(s) ready for prediction")
             
-            # Show molecule previews
-            if len(valid_smiles) <= 20:  # Only show previews for small batches
+            # Show molecule previews (only if Draw module is available)
+            if len(valid_smiles) <= 20 and DRAW_AVAILABLE:  # Only show previews for small batches
                 st.subheader("Molecular Structure Preview")
                 cols_per_row = 4
                 rows = (len(valid_smiles) + cols_per_row - 1) // cols_per_row
@@ -618,11 +627,13 @@ def render_ligand_prediction_page():
                         if mol_idx < len(valid_smiles):
                             try:
                                 mol = Chem.MolFromSmiles(valid_smiles[mol_idx])
-                                if mol:
+                                if mol and Draw is not None:
                                     img = Draw.MolToImage(mol, size=(300, 300))
                                     col.image(img, caption=valid_smiles[mol_idx][:50], use_container_width=True)
                             except Exception as e:
                                 col.error(f"Error rendering: {e}")
+            elif not DRAW_AVAILABLE:
+                st.info("ℹ️ Molecular structure visualization is not available on this platform. Descriptor computation and predictions will work normally.")
             
             # Compute descriptors
             if st.button("🚀 Compute Descriptors & Make Predictions", type="primary"):
