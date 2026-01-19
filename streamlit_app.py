@@ -35,13 +35,163 @@ except ImportError:
 
 st.set_page_config(
     page_title="BBB Permeability Studio",
-    page_icon="🧠",
+    page_icon=None,
     layout="wide",
     menu_items={
         "Report a bug": "https://github.com/your-org/bbb-gui/issues",
         "About": "Sparse-label multi-task learning workflow for BBB permeability modelling.",
     },
 )
+
+# Inject custom CSS for color palette
+st.markdown("""
+<style>
+    /* Color Palette: Deep red to black gradient */
+    :root {
+        --primary-color: #890002;
+        --primary-dark: #7a0002;
+        --primary-darker: #6a0001;
+        --accent-1: #5b0001;
+        --accent-2: #4c0001;
+        --accent-3: #3d0001;
+        --accent-4: #2e0001;
+        --accent-5: #1e0000;
+        --accent-6: #0f0000;
+        --black: #000000;
+    }
+    
+    /* Main background */
+    .main .block-container {
+        background-color: #ffffff;
+    }
+    
+    /* Sidebar */
+    [data-testid="stSidebar"] {
+        background-color: #1e0000;
+        color: #ffffff;
+    }
+    
+    [data-testid="stSidebar"] .css-1d391kg {
+        background-color: #2e0001;
+    }
+    
+    /* Primary buttons */
+    .stButton > button {
+        background-color: #890002;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+    
+    .stButton > button:hover {
+        background-color: #7a0002;
+        border-color: #890002;
+    }
+    
+    .stButton > button:focus {
+        background-color: #6a0001;
+        box-shadow: 0 0 0 0.2rem rgba(137, 0, 2, 0.25);
+    }
+    
+    /* Secondary buttons */
+    .stDownloadButton > button {
+        background-color: #7a0002;
+        color: white;
+    }
+    
+    .stDownloadButton > button:hover {
+        background-color: #6a0001;
+    }
+    
+    /* Headers */
+    h1, h2, h3 {
+        color: #890002;
+    }
+    
+    /* Links */
+    a {
+        color: #890002;
+    }
+    
+    a:hover {
+        color: #7a0002;
+    }
+    
+    /* Metrics */
+    [data-testid="stMetricValue"] {
+        color: #890002;
+    }
+    
+    /* Success boxes */
+    .stSuccess {
+        background-color: #1e0000;
+        border-left: 4px solid #890002;
+        color: #ffffff;
+    }
+    
+    /* Info boxes */
+    .stInfo {
+        background-color: #2e0001;
+        border-left: 4px solid #890002;
+        color: #ffffff;
+    }
+    
+    /* Warning boxes */
+    .stWarning {
+        background-color: #3d0001;
+        border-left: 4px solid #890002;
+        color: #ffffff;
+    }
+    
+    /* Error boxes */
+    .stError {
+        background-color: #4c0001;
+        border-left: 4px solid #890002;
+        color: #ffffff;
+    }
+    
+    /* Radio buttons */
+    .stRadio > label {
+        color: #890002;
+    }
+    
+    /* Selectbox */
+    .stSelectbox > label {
+        color: #890002;
+    }
+    
+    /* Text input labels */
+    .stTextInput > label {
+        color: #890002;
+    }
+    
+    /* Slider */
+    .stSlider > label {
+        color: #890002;
+    }
+    
+    /* Expander */
+    .streamlit-expanderHeader {
+        background-color: #1e0000;
+        color: #ffffff;
+    }
+    
+    .streamlit-expanderHeader:hover {
+        background-color: #2e0001;
+    }
+    
+    /* Dataframes */
+    .stDataFrame {
+        border: 1px solid #890002;
+    }
+    
+    /* Dividers */
+    hr {
+        border-color: #890002;
+    }
+</style>
+""", unsafe_allow_html=True)
 
 # ============================================================================
 # BBB MODEL - FEATURES MODULE
@@ -302,7 +452,7 @@ def render_home_page():
         - **Status:** Home, documentation, and ligand prediction pages available
         """
     )
-    st.sidebar.success("✓ Interactive ligand screening tab now available!")
+    st.sidebar.success("Interactive ligand screening tab now available!")
 
     st.markdown(
         """
@@ -398,15 +548,15 @@ def render_home_page():
         )
 
     st.info(
-        "🎯 **Ready to predict!** Use the 'Ligand Prediction' page in the sidebar to upload your SMILES strings or CSV files and get BBB permeability predictions."
+        "**Ready to predict!** Use the 'Ligand Prediction' page in the sidebar to upload your SMILES strings or CSV files and get BBB permeability predictions."
     )
 
     st.markdown(
         """
         ---
         ### Roadmap
-        1. **✓ Completed** – Communication spine: home and documentation pages summarizing the Tab 4–5 manuscript content.  
-        2. **✓ Completed** – Ligand intake tab with SMILES/CSV upload, descriptor generation, and model scoring (see Ligand Prediction page).  
+        1. **Completed** – Communication spine: home and documentation pages summarizing the Tab 4–5 manuscript content.  
+        2. **Completed** – Ligand intake tab with SMILES/CSV upload, descriptor generation, and model scoring (see Ligand Prediction page).  
         3. **Planned** – Calibration overlay for user-submitted batches and automated report exports (PDF/CSV).
         """
     )
@@ -472,7 +622,7 @@ def render_documentation_page():
     st.markdown(
         """
         ## Roadmap
-        - **✓ Completed:** Ligand intake tab supporting SMILES/CSV uploads, descriptor generation, and scoring.  
+        - **Completed:** Ligand intake tab supporting SMILES/CSV uploads, descriptor generation, and scoring.  
         - **Planned visual assets:** External/internal ROC & PR with CI bands, calibration dashboards, confusion matrices, SHAP explorer, AD curves.  
         - **Reporting:** Automated PDF/CSV exports once ligand scoring is active.
         """
@@ -488,7 +638,7 @@ def render_documentation_page():
 
 def render_ligand_prediction_page():
     """Render the ligand prediction page."""
-    st.title("🧪 BBB Permeability Prediction")
+    st.title("BBB Permeability Prediction")
     st.markdown(
         """
         Upload your ligands as SMILES strings or CSV files to get BBB permeability predictions.
@@ -499,30 +649,43 @@ def render_ligand_prediction_page():
 
     # Check if artifacts directory exists
     artifacts_dir = "artifacts"
+    predictor = None
+    error_msg = None
+    
     if not os.path.exists(artifacts_dir):
-        st.warning(
-            f"⚠️ **Model artifacts not found.**\n\n"
-            f"The '{artifacts_dir}' directory is missing. Please ensure you have downloaded and placed "
-            f"the following files:\n"
-            f"- `{artifacts_dir}/descriptor_cols.json`\n"
-            f"- `{artifacts_dir}/stage2_feature_cols.json`\n"
-            f"- `{artifacts_dir}/models/stage1_efflux.joblib`\n"
-            f"- `{artifacts_dir}/models/stage1_influx.joblib`\n"
-            f"- `{artifacts_dir}/models/stage1_pampa.joblib`\n"
-            f"- `{artifacts_dir}/models/stage1_cns.joblib`\n"
-            f"- `{artifacts_dir}/models/stage2_bbb.joblib`\n\n"
-            f"You can specify a different artifacts directory path if needed."
+        st.info(
+            f"**Model artifacts not found.**\n\n"
+            f"The '{artifacts_dir}' directory is missing. **You can still use this app to:**\n"
+            f"- Compute RDKit molecular descriptors from SMILES\n"
+            f"- Validate and canonicalize SMILES strings\n"
+            f"- View molecular structures (if available)\n\n"
+            f"**To enable BBB predictions, you need to add the model artifacts to your repository:**\n"
+            f"- Create an `{artifacts_dir}/` directory in your repo\n"
+            f"- Add the following files:\n"
+            f"  - `{artifacts_dir}/descriptor_cols.json`\n"
+            f"  - `{artifacts_dir}/stage2_feature_cols.json`\n"
+            f"  - `{artifacts_dir}/models/stage1_efflux.joblib`\n"
+            f"  - `{artifacts_dir}/models/stage1_influx.joblib`\n"
+            f"  - `{artifacts_dir}/models/stage1_pampa.joblib`\n"
+            f"  - `{artifacts_dir}/models/stage1_cns.joblib`\n"
+            f"  - `{artifacts_dir}/models/stage2_bbb.joblib`\n\n"
+            f"**For Streamlit Cloud:** Upload these files to your GitHub repository in the `{artifacts_dir}/` folder."
         )
-        artifacts_dir = st.text_input("Artifacts directory path:", value="artifacts", key="artifacts_dir")
-
-    predictor, error_msg = load_predictor(artifacts_dir)
+        artifacts_dir = st.text_input("Or specify a different artifacts directory path:", value="artifacts", key="artifacts_dir")
+        
+        # Try to load if user specified a different path
+        if artifacts_dir and os.path.exists(artifacts_dir):
+            predictor, error_msg = load_predictor(artifacts_dir)
+    else:
+        st.success(f"Found artifacts directory: `{artifacts_dir}`")
+        predictor, error_msg = load_predictor(artifacts_dir)
 
     if error_msg:
-        st.error(error_msg)
-        st.info("**Note:** Without the model artifacts, you can still use this page to visualize molecular structures and compute RDKit descriptors, but predictions will not be available.")
+        st.warning(f"Could not load model: {error_msg}")
+        st.info("**Note:** You can still compute RDKit descriptors and validate SMILES strings without the model.")
         predictor = None
-    else:
-        st.success(f"✓ Model loaded successfully from `{artifacts_dir}`!")
+    elif predictor is not None:
+        st.success(f"Model loaded successfully! BBB predictions are now available.")
 
     st.divider()
 
@@ -577,10 +740,10 @@ def render_ligand_prediction_page():
                     st.error(f"No 'smiles' column found in CSV. Available columns: {', '.join(df_upload.columns)}")
                 else:
                     smiles_list = df_upload[smiles_col].astype(str).tolist()
-                    st.success(f"✓ Loaded {len(smiles_list)} SMILES from CSV file")
+                    st.success(f"Loaded {len(smiles_list)} SMILES from CSV file")
                     
                     # Show preview
-                    with st.expander("📋 Preview uploaded data"):
+                    with st.expander("Preview uploaded data"):
                         st.dataframe(df_upload.head(10), use_container_width=True)
                         
             except Exception as e:
@@ -604,15 +767,15 @@ def render_ligand_prediction_page():
         
         # Show validation results
         if invalid_indices:
-            st.warning(f"⚠️ {len(invalid_indices)} invalid SMILES string(s) found and will be skipped.")
-            with st.expander("❌ Invalid SMILES", expanded=False):
+            st.warning(f"{len(invalid_indices)} invalid SMILES string(s) found and will be skipped.")
+            with st.expander("Invalid SMILES", expanded=False):
                 for idx in invalid_indices:
                     st.text(f"Row {idx + 1}: {smiles_list[idx]}")
         
         if canon_smiles:
             valid_smiles = [canon for _, _, canon in canon_smiles]
             
-            st.success(f"✓ {len(valid_smiles)} valid SMILES string(s) ready for prediction")
+            st.success(f"{len(valid_smiles)} valid SMILES string(s) ready for prediction")
             
             # Show molecule previews (only if Draw module is available)
             if len(valid_smiles) <= 20 and DRAW_AVAILABLE:  # Only show previews for small batches
@@ -633,31 +796,45 @@ def render_ligand_prediction_page():
                             except Exception as e:
                                 col.error(f"Error rendering: {e}")
             elif not DRAW_AVAILABLE:
-                st.info("ℹ️ Molecular structure visualization is not available on this platform. Descriptor computation and predictions will work normally.")
+                st.info("Molecular structure visualization is not available on this platform. Descriptor computation and predictions will work normally.")
             
             # Compute descriptors
-            if st.button("🚀 Compute Descriptors & Make Predictions", type="primary"):
+            button_text = "Compute Descriptors & Make Predictions" if predictor else "Compute Descriptors"
+            if st.button(button_text, type="primary"):
                 with st.spinner("Computing RDKit descriptors and making predictions..."):
                     try:
                         # Compute descriptors
                         desc_df = compute_rdkit_descriptors(valid_smiles)
                         
-                        st.subheader("📊 Descriptor Information")
-                        st.info(f"✓ Computed {len(desc_df.columns)} RDKit descriptors for {len(valid_smiles)} molecule(s)")
+                        st.subheader("Descriptor Information")
+                        st.info(f"Computed {len(desc_df.columns)} RDKit descriptors for {len(valid_smiles)} molecule(s)")
                         
                         # Show descriptor summary
-                        with st.expander("📈 Descriptor Summary Statistics", expanded=False):
+                        with st.expander("Descriptor Summary Statistics", expanded=False):
                             st.dataframe(desc_df.describe(), use_container_width=True)
                         
                         # Make predictions if model is available
                         if predictor is None:
-                            st.warning("⚠️ Predictions unavailable - model artifacts not loaded. Descriptors computed successfully.")
+                            st.info(
+                                "**Descriptors computed successfully!**\n\n"
+                                "To enable BBB permeability predictions, please add the model artifacts to your repository. "
+                                "See the instructions at the top of this page for details."
+                            )
+                            # Option to download descriptors
+                            desc_csv = desc_df.to_csv(index=False)
+                            st.download_button(
+                                label="Download Descriptors as CSV",
+                                data=desc_csv,
+                                file_name="rdkit_descriptors.csv",
+                                mime="text/csv",
+                                key="download_descriptors"
+                            )
                         else:
                             # Make predictions
                             predictions = predictor.predict_proba(valid_smiles)
                             
                             # Display results
-                            st.subheader("🎯 BBB Permeability Predictions")
+                            st.subheader("BBB Permeability Predictions")
                             
                             # Add threshold slider
                             threshold = st.slider(
@@ -708,7 +885,7 @@ def render_ligand_prediction_page():
                                 st.metric("Max BBB Probability", f"{predictions['p_bbb_plus'].max():.4f}")
                             
                             # Interpretation guide
-                            with st.expander("📖 Interpretation Guide", expanded=False):
+                            with st.expander("Interpretation Guide", expanded=False):
                                 st.markdown("""
                                 **BBB Permeability Probability (p_bbb_plus):**
                                 - **0.0 - 0.3:** Low probability of BBB permeability
@@ -726,7 +903,7 @@ def render_ligand_prediction_page():
                                 """)
                             
                             # Download results
-                            st.subheader("💾 Download Results")
+                            st.subheader("Download Results")
                             
                             # Prepare download dataframe
                             download_df = predictions.copy()
@@ -734,7 +911,7 @@ def render_ligand_prediction_page():
                             
                             csv = download_df.to_csv(index=False)
                             st.download_button(
-                                label="📥 Download Predictions as CSV",
+                                label="Download Predictions as CSV",
                                 data=csv,
                                 file_name="bbb_predictions.csv",
                                 mime="text/csv",
@@ -743,19 +920,19 @@ def render_ligand_prediction_page():
                             
                             # Show descriptors used (if available)
                             if hasattr(predictor, 'descriptor_cols'):
-                                with st.expander("🔬 Descriptors Used by Model", expanded=False):
+                                with st.expander("Descriptors Used by Model", expanded=False):
                                     st.info(f"Model uses {len(predictor.descriptor_cols)} descriptor(s)")
                                     st.write("First 20 descriptors:")
                                     st.code(", ".join(predictor.descriptor_cols[:20]))
                                 
                     except Exception as e:
-                        st.error(f"❌ Error during prediction: {str(e)}")
+                        st.error(f"Error during prediction: {str(e)}")
                         with st.expander("Error details", expanded=False):
                             st.code(traceback.format_exc())
         else:
             st.warning("No valid SMILES strings to process.")
     else:
-        st.info("👆 Please enter SMILES strings or upload a CSV file to get started.")
+        st.info("Please enter SMILES strings or upload a CSV file to get started.")
 
     # Footer
     st.divider()
@@ -777,16 +954,16 @@ def main():
     # Sidebar navigation
     page = st.sidebar.selectbox(
         "Navigate",
-        ["🏠 Home", "📚 Documentation", "🧪 Ligand Prediction"],
+        ["Home", "Documentation", "Ligand Prediction"],
         key="page_selector"
     )
 
     # Render selected page
-    if page == "🏠 Home":
+    if page == "Home":
         render_home_page()
-    elif page == "📚 Documentation":
+    elif page == "Documentation":
         render_documentation_page()
-    elif page == "🧪 Ligand Prediction":
+    elif page == "Ligand Prediction":
         render_ligand_prediction_page()
 
 
