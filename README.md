@@ -2,7 +2,7 @@
 
 Prototype Streamlit interface for the sparse-label multi-task workflow described in Tabs 4 and 5 of the BBB manuscript. This release establishes the home and documentation pages that will anchor the forthcoming ligand submission workspace.
 
-Link: https://bbb-prediction-jxzbtlzkcchsocobqlnafy.streamlit.app/Documentation
+Link: 
 
 ## Features
 - Summarises the Tab 4 manuscript narrative: sparse-label multi-task training, blended calibration, and external validation results.
@@ -38,6 +38,7 @@ The app defaults to `http://localhost:8501`. Use the sidebar to navigate between
 ## Contact
 Questions, bug reports, or collaboration requests: **Dr. Sivanesan Dakshanamurthy** — sd233@georgetown.edu
 ---
+
 
 
 
