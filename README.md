@@ -2,6 +2,8 @@
 
 A Streamlit web application for predicting Blood-Brain Barrier (BBB) permeability using a sparse-label multi-task ensemble model. The interface allows users to upload ligand structures in various formats and receive BBB permeability predictions with molecular descriptor calculations.
 
+Link: https://kapaww3te2rfsgogckbbpy.streamlit.app/
+
 ## Features
 
 - **Single-ligand prediction interface** - Upload one ligand at a time for focused analysis
@@ -134,6 +136,7 @@ The application is a single-file deployment - all code is consolidated in `strea
 Questions, bug reports, or collaboration requests: **Dr. Sivanesan Dakshanamurthy** - sd233@georgetown.edu
 
 ---
+
 
 
 
